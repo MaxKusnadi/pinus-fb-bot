@@ -1,7 +1,6 @@
 /bin
 /include
 /lib
-/migrations
 
 __pycache__/
 
