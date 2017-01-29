@@ -1,7 +1,10 @@
 from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 
-from app import db
+from bot import db
+
+import bot.models.user
+import bot.models.orderItem
 
 
 class Order(db.Model):

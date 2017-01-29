@@ -7,5 +7,7 @@ app.config.from_object(os.environ['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-from app import models
-from app import views
+from bot import views
+import bot.models.user
+import bot.models.order
+import bot.models.orderItem

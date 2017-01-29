@@ -1,8 +1,9 @@
 from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 
-from app import db
+from  bot import db
 
+import bot.models.order
 
 class User(db.Model):
     __tablename__ = 'user'
@@ -27,4 +28,4 @@ class User(db.Model):
         self.last_name  = last_name
 
     def __repr__(self):
-        return '<id {} - {} {}>'.format(self.id, self.first_name, self.last_name)
+        return '<id {} - {} {}>'.format(self.fb_id, self.first_name, self.last_name)
