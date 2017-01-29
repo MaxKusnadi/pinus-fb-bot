@@ -14,6 +14,7 @@ class TestUser(unittest.TestCase):
         db.session.commit()
         users = User.query.all()
         self.assertTrue(user in users)
+        clear_db()
 
     def test_set_get(self):
         user = User("abc")
@@ -29,7 +30,8 @@ class TestUser(unittest.TestCase):
         db.session.commit()
 
         updated_u = User.query.filter(User.fb_id=="abc").first()
-        assert(u.first_name == "Max")
-        assert(u.last_name == "Kusnadi")
-        assert(u.__repr__() == '<id abc - Max Kusnadi>')
+        assert(updated_u.first_name == "Max")
+        assert(updated_u.last_name == "Kusnadi")
+        assert(updated_u.__repr__() == '<id abc - Max Kusnadi>')
+        clear_db()
 

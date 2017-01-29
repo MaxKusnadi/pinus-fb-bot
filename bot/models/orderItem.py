@@ -15,14 +15,15 @@ class OrderItem(db.Model):
 
     order_id = Column(Integer, ForeignKey("order.id"))
 
-    def __init__(self, description, quantity):
+    def __init__(self, order, description, quantity):
         self.description = description
         self.quantity = quantity
+        self.order = order
 
     def set_quantity(self, quantity):
         self.quantity = quantity
 
     def __repr__(self):
-        return '<id {} - Desc: {} Quantity: {}'.format(self.id,
+        return '<id {} - Desc: {} Quantity: {}>'.format(self.id,
                                                        self.description,
                                                        self.quantity)
