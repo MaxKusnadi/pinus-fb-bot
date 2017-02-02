@@ -21,7 +21,7 @@ class UserMapper(object):
 
 		except ValueError as err:
 			logging.error(err)
-			logging error("Args: " + err.args)
+			logging error(err.args)
 
 		except Exception as err:
 			logging.error(err)
