@@ -23,10 +23,13 @@ class Order(db.Model):
         self.status = status
         self.user = user
 
-    def set_time(self):
+    def set_time_auto(self):
         import datetime
 
         self.time = datetime.datetime.utcnow()
+
+    def set_time_manual(self, time):
+        self.time = time
 
     def set_status(self, status):
         self.status = status
