@@ -4,6 +4,7 @@ from sqlalchemy.orm import relationship
 from  bot import db
 
 import bot.models.order
+import bot.constants.value
 
 class User(db.Model):
     __tablename__ = 'user'
@@ -16,7 +17,7 @@ class User(db.Model):
     order = relationship("Order", backref="user")
     
 
-    def __init__(self, fb_id, first_name="", last_name=""):
+    def __init__(self, fb_id, first_name=EMPTY_STRING, last_name=EMPTY_STRING):
         self.fb_id = fb_id
         self.first_name = first_name
         self.last_name = last_name

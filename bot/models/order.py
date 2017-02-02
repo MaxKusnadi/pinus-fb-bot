@@ -5,6 +5,7 @@ from bot import db
 
 import bot.models.user
 import bot.models.orderItem
+import bot.constants.value
 
 
 class Order(db.Model):
@@ -17,7 +18,7 @@ class Order(db.Model):
     user_id = Column(Integer, ForeignKey('user.id'))
     order_item = relationship("OrderItem", backref="order")
 
-    def __init__(self, user, time=None, status="NOT CONFIRMED"):
+    def __init__(self, user, time=None, status=NOT_CONFIRMED):
         self.time = time
         self.status = status
         self.user = user
