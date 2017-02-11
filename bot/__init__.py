@@ -1,9 +1,9 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_restful import Api
+import logging
 import os
 
-import logging
+from flask import Flask
+from flask_restful import Api
+from flask_sqlalchemy import SQLAlchemy
 
 logging.basicConfig(level=logging.DEBUG, format=' %(asctime)s - %(levelname)s - %(message)s')
 

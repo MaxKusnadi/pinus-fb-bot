@@ -1,10 +1,8 @@
-from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
+from sqlalchemy import Column, String, Integer
 from sqlalchemy.orm import relationship
 
 from  bot import db
 from bot.constants.value import *
-
-import bot.models.order
 
 
 class User(db.Model):

@@ -4,9 +4,6 @@ from sqlalchemy.orm import relationship
 from bot import db
 from bot.constants.value import *
 
-import bot.models.user
-import bot.models.orderItem
-
 
 class Order(db.Model):
     __tablename__ = "order"

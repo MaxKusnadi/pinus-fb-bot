@@ -1,5 +1,5 @@
-import bot.constants.error
-import bot.constants.value
+from bot.constants.error import *
+from bot.constants.value import *
 
 def is_input_alphabet(name):
 	return name.isalpha()
@@ -27,6 +27,7 @@ def is_user_args_valid(fb_id, first_name, last_name):
 	return fb_id_valid and is_first_name and is_last_name
 
 def is_quantity_valid(quantity):
+	assert (type(quantity) == int)
 	if quantity >= 0:
 		return True
 	else:

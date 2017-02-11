@@ -1,9 +1,6 @@
-from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, String, Integer, ForeignKey
 
 from bot import db
-
-import bot.models.order
 
 
 class OrderItem(db.Model):

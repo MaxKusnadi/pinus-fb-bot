@@ -1,9 +1,8 @@
 import unittest
 
-from bot.constants.value import *
-from bot.models.user import User
 from bot.models.order import Order
 from bot.models.orderItem import OrderItem
+from bot.models.user import User
 
 
 class TestOrderItem(unittest.TestCase):

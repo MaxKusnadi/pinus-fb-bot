@@ -7,7 +7,7 @@ class Database():
 		meta = db.metadata
 		for table in reversed(meta.sorted_tables):
 			db.session.execute(table.delete())
-		commit_db.__func__()
+		db.session.commit()
 
 	@staticmethod
 	def commit_db():
@@ -16,4 +16,4 @@ class Database():
 	@staticmethod
 	def add_to_db(obj):
 		db.session.add(obj)
-		commit_db.__func__()
+		db.session.commit()

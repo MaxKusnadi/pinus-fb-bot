@@ -1,14 +1,13 @@
-from flask_restful import Resource
-from flask import request
-
-from bot import app, api
-
-import bot.constants.value
-
-import os
 import json
 import logging
+import os
+
 import requests
+from flask import request
+from flask_restful import Resource
+
+from bot import api
+
 
 class Index(Resource):
 	def get(self):
