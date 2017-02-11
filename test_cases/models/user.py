@@ -1,37 +1,22 @@
 import unittest
 
-from bot import db
 from bot.models.user import User
-from bot.models import clear_db
 
 class TestUser(unittest.TestCase):
-    def setUp(self):
-        clear_db()
-        
-    def test_create(self):
-        user = User("abcdef")
-        db.session.add(user)
-        db.session.commit()
-        users = User.query.all()
-        self.assertTrue(user in users)
-        clear_db()
+
 
     def test_set_get(self):
         user = User("abc")
-        db.session.add(user)
-        db.session.commit()
 
-        u = User.query.filter(User.fb_id=="abc").first()
-        assert(u.first_name == "")
-        assert(u.last_name == "")
+        assert(user.fb_id == "abc")
+        assert(user.first_name == "")
+        assert(user.last_name == "")
 
-        u.set_first_name("Max")
-        u.set_last_name("Kusnadi")
-        db.session.commit()
+        user.set_first_name("Max")
+        user.set_last_name("Kusnadi")
 
-        updated_u = User.query.filter(User.fb_id=="abc").first()
-        assert(updated_u.first_name == "Max")
-        assert(updated_u.last_name == "Kusnadi")
-        assert(updated_u.__repr__() == '<id abc - Max Kusnadi>')
-        clear_db()
+        assert(user.first_name == "Max")
+        assert(user.last_name == "Kusnadi")
+        assert(user.__repr__() == '<id abc - Max Kusnadi>')
+
 

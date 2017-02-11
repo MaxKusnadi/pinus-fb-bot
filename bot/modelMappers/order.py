@@ -1,5 +1,6 @@
 from bot import db
 
+import bot.database
 import bot.models.order
 import bot.modelMappers.user
 import bot.constants.value
@@ -22,8 +23,7 @@ class OrderMapper(object):
 		else:
 			order = Order(user)
 			order.set_time_auto()
-			db.session.add(order)
-			db.session.commit()
+			Database.add_to_db(order)
 		return order
 
 	# READ
@@ -53,5 +53,5 @@ class OrderMapper(object):
 		else:
 			order.set_status(status)
 			order.set_time_auto()
-			db.session.commit()
+			Database.commit_db()
 		return order

@@ -1,6 +1,6 @@
 from sqlalchemy import _and
 
-from bot import db
+from bot.database import Database
 
 import bot.models.user
 import bot.modelMappers
@@ -10,14 +10,14 @@ import bot.constants.error
 import logging
 
 class UserMapper(object):
+	
 	# Create
 	def create_user(self, fb_id, first_name=EMPTY_STRING, last_name=EMPTY_STRING):
 		u = None
 		try:
 			if is_user_args_valid(fb_id, first_name, last_name): 
 				u = User(fb_id, first_name, last_name)
-				db.session.add(u)
-				db.session.commit()
+				Database.add_to_db(u)
 
 		except ValueError as err:
 			logging.error(err)
@@ -57,24 +57,12 @@ class UserMapper(object):
 		u = User.query.all()
 		return u
 
-	def get_user_id(self, fb_id):
-		u = self.get_user_by_fb_id(fb_id)
-		return u.id if u else raise ValueError(NOT_FOUND.format("User"), fb_id)
-
-	def get_user_first_name(self, fb_id):
-		u = self.get_user_by_fb_id(fb_id)
-		return u.first_name if u else raise ValueError(NOT_FOUND.format("User"), fb_id)
-
-	def get_user_last_name(self, fb_id):
-		u = self.get_user_by_fb_id(fb_id)
-		return u.last_name if u else raise ValueError(NOT_FOUND.format("User"), fb_id)
-
 	# Update
 	def set_first_name(self, fb_id, first_name):
 		u = get_user_by_fb_id(fb_id) if is_name_valid(first_name) else None
 		if u:
 			u.set_first_name(first_name)
-			db.session.commit()
+			Database.commit_db()
 		else:
 			raise ValueError(NOT_FOUND.format("User"), fb_id, first_name)
 		return u
@@ -83,7 +71,7 @@ class UserMapper(object):
 		u = get_user_by_fb_id(fb_id) if is_name_valid(last_name) else None
 		if u:
 			u.set_last_name(last_name)
-			db.session.commit()
+			Database.commit_db()
 		else:
 			raise ValueError(NOT_FOUND.format("User"), fb_id, last_name)
 		return u

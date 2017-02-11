@@ -2,9 +2,10 @@ from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 
 from  bot import db
+from bot.constants.value import *
 
 import bot.models.order
-import bot.constants.value
+
 
 class User(db.Model):
     __tablename__ = 'user'

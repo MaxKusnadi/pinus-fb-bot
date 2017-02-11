@@ -1,5 +1,6 @@
 from bot import db
 
+import bot.database
 import bot.models.orderItem
 import bot.modelMappers
 import bot.modelMappers.order
@@ -31,8 +32,7 @@ class OrderItemMapper(object):
 
 		if order and quantity_valid:
 			orderItem = OrderItem(order, description, quantity)
-			db.session.add(orderItem)
-			db.session.commit()
+			Database.add_to_db(orderItem)
 			return orderItem
 
 		return None
@@ -60,6 +60,6 @@ class OrderItemMapper(object):
 
 		if order_item and quantity_valid:
 			order_item.set_quantity(quantity)
-			db.session.commit()
+			Database.commit_db()
 			return order_item
 		return None
