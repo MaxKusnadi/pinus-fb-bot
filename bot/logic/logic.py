@@ -96,7 +96,7 @@ class Logic(object):
         return u
 
     def get_user_data(self, fb_id):
-        logging.info("getting info of {recipient}".format(recipient=recipient_id))
+        logging.info("getting info of {recipient}".format(recipient=fb_id))
         link = "https://graph.facebook.com/v2.6/" + fb_id + "?fields=first_name,last_name"
         r = requests.get(link, params=self.PARAMS, headers=self.HEADERS)
         if r.status_code != 200:
