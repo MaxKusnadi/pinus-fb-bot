@@ -79,7 +79,7 @@ class Logic(object):
         self.send_message_text(sender_id, "Thanks for ordering {name}! Your order has been confirmed! :)".format(user.first_name))
 
     def confirm_order(self, sender_id, payload):
-        logging.info("starting order for {recipient}".format(recipient=recipient_id))
+        logging.info("starting order for {recipient}".format(recipient=sender_id))
 
         data = json.dumps({
             "recipient": {
@@ -111,7 +111,7 @@ class Logic(object):
 
 
     def process_quantity(self, sender_id, payload):
-        logging.info("processing quantity for {recipient}".format(recipient=recipient_id))
+        logging.info("processing quantity for {recipient}".format(recipient=sender_id))
 
         data = json.dumps({
             "recipient": {
