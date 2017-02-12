@@ -49,7 +49,7 @@ class Logic(object):
 
     def parse_message(self, user, messaging_event):
         if "quick_reply" in messaging_event["message"].keys():
-            self.process_quick_reply(user, messaging_event["message"]["quick_reply"]["payload"])
+            self.process_quick_reply(user.fb_id, messaging_event["message"]["quick_reply"]["payload"])
         else:
             try:
                 message_text = messaging_event["message"]["text"]  # the message's text
