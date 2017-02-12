@@ -36,16 +36,7 @@ class Logic(object):
         self.send_message_bubble(sender_id)
         user = self.store_user(sender_id)
         if messaging_event.get("message"):  # someone sent us a message
-            try:
-                message_text = messaging_event["message"]["text"]  # the message's text
-            except KeyError:
-                self.send_message(sender_id, "Thanks!")
-            else:
-                if "quick_reply" in messaging_event["message"].keys():
-                    self.send_message(sender_id, messaging_event["message"]["quick_reply"]["payload"])
-                else:
-                    self.send_message(sender_id, message_text)
-
+            self.parse_message(user, messaging_event)
 
         if messaging_event.get("delivery"):  # delivery confirmation
             pass
@@ -56,6 +47,53 @@ class Logic(object):
         if messaging_event.get("postback"):  # user clicked/tapped "postback" button in earlier message
             pass
 
+    def parse_message(self, user, messaging_event):
+        if "quick_reply" in messaging_event["message"].keys():
+            self.process_quick_reply(sender_id, messaging_event["message"]["quick_reply"]["payload"])
+        try:
+            message_text = messaging_event["message"]["text"]  # the message's text
+        except KeyError:
+            self.send_message_text(sender_id, "Thanks for the likes, {name}!".format(name=u.first_name))
+        else:
+            if message_text.lower() == "order":
+                self.start_order(user.fb_id)
+            else:
+                self.send_message_text(sender_id, "Hi, {name}! You can order flower by typing 'order'! ".format(name=u.first_name))
+
+    def process_quick_reply(self, sender_id, payload):
+        pass
+
+    def start_order(self, recipient_id):
+        logging.info("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
+
+        data = json.dumps({
+            "recipient": {
+                "id": recipient_id
+            },
+            "message": {
+                "text": "Which flower do you want?",
+                "quick_replies":[
+                    {
+                        "content_type":"text",
+                        "title":"Packet A",
+                        "payload":"Packet A",
+                        "image_url":"https://cdn.pixabay.com/photo/2013/06/23/19/47/rose-140853_960_720.jpg"
+                    },
+                    {
+                        "content_type":"text",
+                        "title":"Packet B",
+                        "payload":"Packet B",
+                        "image_url":"https://cdn.pixabay.com/photo/2013/05/26/12/14/rose-113735_960_720.jpg"
+                    }
+                ]
+            }
+        })
+        r = requests.post(self.LINK, params=self.PARAMS, headers=self.HEADERS, data=data)
+        if r.status_code != 200:
+            logging.info(r.status_code)
+            logging.info(r.text)
+
+
     def send_message_text(self, recipient_id, message_text):
         logging.info("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
 
@@ -64,7 +102,7 @@ class Logic(object):
                 "id": recipient_id
             },
             "message": {
-                "text": message_text,
+                "text": message_text
             }
         })
         r = requests.post(self.LINK, params=self.PARAMS, headers=self.HEADERS, data=data)
