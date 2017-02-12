@@ -72,6 +72,7 @@ class Logic(object):
             self.store_order(sender_id, payload)
 
     def store_order(self, sender_id, payload):
+        payload = eval(payload)
         order = self.order.create_order(sender_id)
         order = self.order.update_order_status_by_order_id(order.id, "CONFIRMED")
         orderItem = self.item.create_order_item(order.id, payload['description'], payload['quantity'])
@@ -123,26 +124,26 @@ class Logic(object):
                     {
                         "content_type":"text",
                         "title":"1",
-                        "payload": {
+                        "payload": str({
                             "description": payload,
                             "quantity": 1
-                            }
+                            })
                     },
                     {
                         "content_type":"text",
                         "title":"2",
-                        "payload": {
+                        "payload": str({
                             "description": payload,
                             "quantity": 2
-                            }
+                            })
                     },
                     {
                         "content_type":"text",
                         "title":"3",
-                        "payload": {
+                        "payload": str({
                             "description": payload,
                             "quantity": 3
-                            }
+                            })
                     },
                 ]
             }
