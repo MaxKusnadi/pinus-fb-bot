@@ -64,7 +64,7 @@ class Logic(object):
         pass
 
     def start_order(self, recipient_id):
-        logging.info("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
+        logging.info("starting order for {recipient}".format(recipient=recipient_id))
 
         data = json.dumps({
             "recipient": {
