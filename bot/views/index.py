@@ -34,14 +34,17 @@ def webhook():
             for messaging_event in entry["messaging"]:
 
                 if messaging_event.get("message"):  # someone sent us a message
-
                     sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
-                    message_text = messaging_event["message"]["text"]  # the message's text
-                    if "quick_reply" in messaging_event["message"].keys():
-                    	send_message(sender_id, messaging_event["message"]["quick_reply"]["payload"])
-                    else:
-	                    send_message(sender_id, message_text)
+                    try:
+	                    message_text = messaging_event["message"]["text"]  # the message's text
+	                except KeyError:
+	                	send_message(sender_id, "Thanks!")
+	                else:
+	                    if "quick_reply" in messaging_event["message"].keys():
+    	                	send_message(sender_id, messaging_event["message"]["quick_reply"]["payload"])
+        	            else:
+	        	            send_message(sender_id, message_text)
 
 
                 if messaging_event.get("delivery"):  # delivery confirmation
