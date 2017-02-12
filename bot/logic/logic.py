@@ -30,7 +30,7 @@ class Logic(object):
     def get_all_order_items(self):
         return self.item.get_all_order_items()
 
-    def parse_messaging_event(messaging_event):
+    def parse_messaging_event(self, messaging_event):
         sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
         recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
         self.send_message_bubble(sender_id)
