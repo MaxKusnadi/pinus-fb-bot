@@ -77,7 +77,7 @@ class Logic(object):
         order = self.order.update_order_status_by_order_id(order.id, "CONFIRMED")
         orderItem = self.item.create_order_item(order.id, payload['description'], payload['quantity'])
         user = self.user.get_user_by_fb_id(sender_id)
-        self.send_message_text(sender_id, "Thanks for ordering {name}! Your order has been confirmed! :)".format(user.first_name))
+        self.send_message_text(sender_id, "Thanks for ordering {}! Your order has been confirmed! :)".format(user.first_name))
 
     def confirm_order(self, sender_id, payload):
         logging.info("starting order for {recipient}".format(recipient=sender_id))
