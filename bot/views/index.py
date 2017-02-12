@@ -6,7 +6,7 @@ from bot import app
 from bot.logic.logic import Logic
 
 
-logic = Logic
+logic = Logic()
 
 @app.route('/', methods=['GET'])
 def verify():
@@ -38,7 +38,6 @@ def webhook():
 @app.route('/database', methods=['GET'])
 def database():
     users = logic.get_all_users()
-    logging.debug(users)
     orders = logic.get_all_orders()
     items = logic.get_all_order_items()
     return render_template('database.html', users=users,

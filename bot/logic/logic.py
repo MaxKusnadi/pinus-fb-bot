@@ -22,7 +22,6 @@ class Logic(object):
 
     def get_all_users(self):
         u = self.user.get_all_users()
-        logging.debug(u)
         return u
 
     def get_all_orders(self):
