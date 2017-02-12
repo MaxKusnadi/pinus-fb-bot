@@ -68,7 +68,19 @@ def send_message(recipient_id, message_text):
             "id": recipient_id
         },
         "message": {
-            "text": message_text
+            "text": message_text,
+            "quick_replies":[
+		      {
+		        "content_type":"text",
+		        "title":"Red",
+		        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED"
+		      },
+		      {
+		        "content_type":"text",
+		        "title":"Green",
+		        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_GREEN"
+		      }
+		    ]
         }
     })
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
