@@ -1,12 +1,12 @@
-import json
 import logging
-import os
-import requests
 
-from flask import request
+
+from flask import request, render_template
 from bot import app
+from bot.logic.logic import Logic
 
-import logging
+
+logic = Logic
 
 @app.route('/', methods=['GET'])
 def verify():
@@ -32,64 +32,14 @@ def webhook():
 
         for entry in data["entry"]:
             for messaging_event in entry["messaging"]:
-
-                if messaging_event.get("message"):  # someone sent us a message
-                    sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
-                    recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
-                    try:
-                        message_text = messaging_event["message"]["text"]  # the message's text
-                    except KeyError:
-                        send_message(sender_id, "Thanks!")
-                    else:
-                        if "quick_reply" in messaging_event["message"].keys():
-                            send_message(sender_id, messaging_event["message"]["quick_reply"]["payload"])
-                        else:
-                            send_message(sender_id, message_text)
-
-
-                if messaging_event.get("delivery"):  # delivery confirmation
-                    pass
-
-                if messaging_event.get("optin"):  # optin confirmation
-                    pass
-
-                if messaging_event.get("postback"):  # user clicked/tapped "postback" button in earlier message
-                    pass
-
+                logic.parse_messaging_event(messaging_event)                
     return "ok", 200
 
-
-def send_message(recipient_id, message_text):
-
-    logging.info("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
-
-    params = {
-        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
-    }
-    headers = {
-        "Content-Type": "application/json"
-    }
-    data = json.dumps({
-        "recipient": {
-            "id": recipient_id
-        },
-        "message": {
-            "text": message_text,
-            "quick_replies":[
-              {
-                "content_type":"text",
-                "title":"Red",
-                "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED"
-              },
-              {
-                "content_type":"text",
-                "title":"Green",
-                "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_GREEN"
-              }
-            ]
-        }
-    })
-    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
-    if r.status_code != 200:
-        logging.info(r.status_code)
-        logging.info(r.text)
+@app.route('/database', methods=['GET'])
+def database():
+    users = logic.get_all_users()
+    logging.debug(users)
+    orders = logic.get_all_orders()
+    items = logic.get_all_order_items()
+    return render_template('database.html', users=users,
+                           orders=orders, items=items)

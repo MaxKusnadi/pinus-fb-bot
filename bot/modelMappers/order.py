@@ -47,6 +47,10 @@ class OrderMapper(object):
         else:
             raise ValueError(NOT_FOUND.format("Orders"), fb_id)
 
+    def get_all_orders(self):
+        o = Order.query.all()
+        return o
+
     # UPDATE
     def update_order_status_by_order_id(self, order_id, status):
         try:

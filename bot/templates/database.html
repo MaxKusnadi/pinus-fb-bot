@@ -1,0 +1,55 @@
+<html>
+	<body>
+		<table>
+			<tr>
+				<th> Id </th>
+				<th> FB ID </th>
+				<th> First Name </th>
+				<th> Last Name</th>
+			</tr>
+			{% for user in users %}
+			<tr>
+				<td> {{ user.id }} </td>
+				<td> {{ user.fb_id }} </td>
+				<td> {{ user.first_name }} </td>
+				<td> {{ user.last_name }} </td>
+			</tr>
+			{% endfor %}
+		</table>
+		<br/>
+		<table>
+			<tr>
+				<th> Id </th>
+				<th> Time </th>
+				<th> Status </th>
+				<th> User ID</th>
+			</tr>
+			{% for order in orders %}
+			<tr>
+				<td> {{ order.id }} </td>
+				<td> {{ order.time }} </td>
+				<td> {{ order.status }} </td>
+				<td> {{ order.user_id }} </td>
+			</tr>
+			{% endfor %}
+		</table>
+		<br/>
+		<table>
+			<tr>
+				<th> Id </th>
+				<th> Description </th>
+				<th> Quantity </th>
+				<th> Order ID </th>
+			</tr>
+			{% for item in items %}
+			<tr>
+				<td> {{ item.id }} </td>
+				<td> {{ item.description }} </td>
+				<td> {{ item.quantity }} </td>
+				<td> {{ item.order_id }} </td>
+			</tr>
+			{% endfor %}
+		</table>
+
+	</body>
+</html>

@@ -49,6 +49,10 @@ class OrderItemMapper(object):
         else:
             raise ValueError(NOT_FOUND.format("Order item"))
 
+    def get_all_order_items(self):
+        order_items = OrderItem.query.all()
+        return order_items
+
     # UPDATE
     def update_order_item_quantity_by_order_item_id(self, order_item_id, quantity):
         try:
