@@ -83,10 +83,10 @@ class Logic(object):
 
         data = json.dumps({
             "recipient": {
-                "id": recipient_id
+                "id": sender_id
             },
             "message": {
-                "text": "Which flower do you want?",
+                "text": "Confirm order?",
                 "quick_replies":[
                     {
                         "content_type":"text",
@@ -115,7 +115,7 @@ class Logic(object):
 
         data = json.dumps({
             "recipient": {
-                "id": recipient_id
+                "id": sender_id
             },
             "message": {
                 "text": "How many {} do you want?".format(payload),
