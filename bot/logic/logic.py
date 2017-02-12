@@ -49,16 +49,16 @@ class Logic(object):
 
     def parse_message(self, user, messaging_event):
         if "quick_reply" in messaging_event["message"].keys():
-            self.process_quick_reply(sender_id, messaging_event["message"]["quick_reply"]["payload"])
+            self.process_quick_reply(user, messaging_event["message"]["quick_reply"]["payload"])
         try:
             message_text = messaging_event["message"]["text"]  # the message's text
         except KeyError:
-            self.send_message_text(sender_id, "Thanks for the likes, {name}!".format(name=u.first_name))
+            self.send_message_text(user.fb_id, "Thanks for the likes, {name}!".format(name=user.first_name))
         else:
             if message_text.lower() == "order":
                 self.start_order(user.fb_id)
             else:
-                self.send_message_text(sender_id, "Hi, {name}! You can order flower by typing 'order'! ".format(name=u.first_name))
+                self.send_message_text(user.fb_id, "Hi, {name}! You can order flower by typing 'order'! ".format(name=user.first_name))
 
     def process_quick_reply(self, sender_id, payload):
         pass
