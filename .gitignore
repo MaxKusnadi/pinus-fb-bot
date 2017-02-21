@@ -14,5 +14,5 @@ pip-selfcheck.json
 *.pyc
 .coverage
 .idea/
-pinus-fb-bot.sublime-project
-pinus-fb-bot.sublime-workspace
+*.sublime-project
+*.sublime-workspace
