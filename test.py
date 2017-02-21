@@ -16,6 +16,9 @@ from test_cases.modelMappers.order import (TestOrderMapperCreate,
 from test_cases.modelMappers.orderItem import (TestOrderItemCreate,
                                                TestOrderItemRead,
                                                TestOrderItemUpdate)
+from test_cases.modelMappers.event import (TestEventMapperCreate,
+                                           TestEventMapperRead,
+                                           TestEventMapperUpdate)
 
 if __name__ == '__main__':
     unittest.main()

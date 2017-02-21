@@ -1,6 +1,7 @@
 import logging
 
 from bot.database import Database
+from bot.constants.error import *
 from bot.modelMappers import *
 from bot.modelMappers.user import UserMapper
 from bot.models.order import Order
@@ -11,6 +12,7 @@ class OrderMapper(object):
     def __init__(self):
         self.userMapper = UserMapper()
 
+    # CREATE
     def create_order(self, fb_id):
         try:
             user = self.userMapper.get_user_by_fb_id(fb_id)
@@ -39,7 +41,7 @@ class OrderMapper(object):
             logging.error(err)
             logging.error(err.args)
             raise err
-        
+
         user_id = user.id
         order = Order.query.filter(Order.user_id == user_id)
         if order.count() > 0:
