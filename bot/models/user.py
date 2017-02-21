@@ -1,7 +1,7 @@
 from sqlalchemy import Column, String, Integer
 from sqlalchemy.orm import relationship
 
-from  bot import db
+from bot import db
 from bot.constants.value import *
 
 
@@ -14,7 +14,6 @@ class User(db.Model):
     last_name = Column(String)
 
     order = relationship("Order", backref="user")
-    
 
     def __init__(self, fb_id, first_name=EMPTY_STRING, last_name=EMPTY_STRING):
         self.fb_id = fb_id
@@ -25,7 +24,7 @@ class User(db.Model):
         self.first_name = first_name
 
     def set_last_name(self, last_name):
-        self.last_name  = last_name
+        self.last_name = last_name
 
     def __repr__(self):
         return '<id {} - {} {}>'.format(self.fb_id, self.first_name, self.last_name)
