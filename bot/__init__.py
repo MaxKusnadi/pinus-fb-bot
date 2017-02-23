@@ -13,6 +13,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 import bot.views.index
+import bot.views.facebook
+import bot.views.event
+import bot.views.shop
 
 import bot.models.user
 import bot.models.order

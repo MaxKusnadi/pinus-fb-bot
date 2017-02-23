@@ -1,0 +1,34 @@
+{% extends 'layout/main.html' %}
+{% block body %}
+<table class="table table-striped">
+  <thead class="thead-inverse">
+    <tr>
+      <th> ID </th>
+      <th> Title </th>
+      <th> Description </th>
+      <th> Link </th>
+      <th> Creation Date </th>
+      <th> Active? </th>
+      <th> Toggle Active </th>
+      <th> </th>
+    </tr>
+  </thead>
+
+  {% for event in events %}
+  <tr>
+    <td> {{ event.id }} </td>
+    <td> {{ event.title }} </td>
+    <td> {{ event.description }} </td>
+    <td> {{ event.link }} </td>
+    <td> {{ event.creationDate }} </td>
+    <td> {{ event.isActive }} </td>
+    {% if event.isActive == 'True' %}
+      <td> <a href="{{ url_for('deactivate_event', event_id=event.id)}}">Deactivate</a><td>
+    {% else %}
+      <td> <a href="{{ url_for('activate_event', event_id=event.id)}}">Activate</a> <td>
+    {% endif %}
+    <td> Update <td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
