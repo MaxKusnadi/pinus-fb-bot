@@ -22,6 +22,8 @@ class StagingConfig(Config):
 class DevelopmentConfig(Config):
     DEVELOPMENT = True
     DEBUG = True
+    WTF_CSRF_ENABLED = True
+    SECRET_KEY = 'babababa'
 
 
 class TestingConfig(Config):

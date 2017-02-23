@@ -27,3 +27,8 @@ def deactivate_event(event_id):
     logic.deactivate_event(event_id)
     events = logic.get_all_events()
     return render_template('event/index.html', events=events)
+
+
+@app.route('/event/update/<event_id>', methods=['GET', 'POST'])
+def update_event(event_id):
+    return render_template('event/update.html')
