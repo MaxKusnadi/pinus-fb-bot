@@ -8,6 +8,7 @@ from bot.logic.logic import Logic
 
 logic = Logic()
 
+
 @app.route('/', methods=['GET'])
 def verify():
     # when the endpoint is registered as a webhook, it must echo back
@@ -26,14 +27,17 @@ def webhook():
     # endpoint for processing incoming messaging events
 
     data = request.get_json()
-    logging.debug(data)  # you may not want to log every incoming message in production, but it's good for testing
+    # you may not want to log every incoming message in production, but it's
+    # good for testing
+    logging.debug(data)
 
     if data["object"] == "page":
 
         for entry in data["entry"]:
             for messaging_event in entry["messaging"]:
-                logic.parse_messaging_event(messaging_event)                
+                logic.parse_messaging_event(messaging_event)
     return "ok", 200
+
 
 @app.route('/database', methods=['GET'])
 def database():
@@ -42,3 +46,8 @@ def database():
     items = logic.get_all_order_items()
     return render_template('database.html', users=users,
                            orders=orders, items=items)
+
+
+@app.route('/admin', methods=['GET'])
+def index():
+    return render_template('index.html')
