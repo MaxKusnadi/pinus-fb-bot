@@ -23,7 +23,6 @@ class FacebookLogic(object):
         recipient_id = messaging_event["recipient"]["id"]
         user = self.get_user_data(sender_id)
         if messaging_event.get("message"):  # someone sent us a message
-            self.send_message_bubble(sender_id)
             self.parse_message(user, messaging_event)
 
         if messaging_event.get("delivery"):  # delivery confirmation
@@ -60,6 +59,7 @@ class FacebookLogic(object):
                 user['fb_id'], "Thanks for the likes, {name}!".format(name=user['name']))
         else:
             if message_text.lower() == "event" or message_text.lower() == "events":
+                self.send_message_bubble(sender_id)
                 self.send_event(user['fb_id'])
 
     def get_user_data(self, fb_id):
