@@ -3,10 +3,10 @@ import os
 
 from flask import request
 from bot import app
-from bot.logic.logic import Logic
+from bot.logic.facebook import FacebookLogic
 
 
-logic = Logic()
+logic = FacebookLogic()
 
 
 @app.route('/', methods=['GET'])
