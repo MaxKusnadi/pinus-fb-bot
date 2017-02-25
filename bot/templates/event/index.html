@@ -14,7 +14,7 @@
     </tr>
   </thead>
 
-  {% for event in events %}
+ <!--  {% for event in events %}
   <tr>
     <td> {{ event.id }} </td>
     <td> {{ event.title }} </td>
@@ -29,6 +29,6 @@
     {% endif %}
     <td> <a href="{{ url_for('update_event', event_id=event.id)}}">Update</a> <td>
   </tr>
-  {% endfor %}
+  {% endfor %} -->
 </table>
 {% endblock %}
