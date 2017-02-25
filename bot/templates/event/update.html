@@ -1,0 +1,13 @@
+{% extends 'layout/main.html' %}
+{% block body %}
+<h1>Update</h1>
+<form action="" method="post" name="login">
+    {{ form.hidden_tag() }}
+    <p>
+        Please enter your OpenID:<br>
+        {{ form.openid(size=80) }}<br>
+    </p>
+    <p>{{ form.remember_me }} Remember Me</p>
+    <p><input type="submit" value="Sign In"></p>
+</form>
+{% endblock %}
