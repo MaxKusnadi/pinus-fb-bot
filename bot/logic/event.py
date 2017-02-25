@@ -39,8 +39,8 @@ class EventLogic(object):
 
     def get_all_events(self):
         events = self.map.get_all_events()
-        for event in events:
-            event.isActive = str(event.isActive)
+        # for event in events:
+        #     event.isActive = str(event.isActive)
         events = sorted(events, key=lambda x: x.id)
         return events
 
