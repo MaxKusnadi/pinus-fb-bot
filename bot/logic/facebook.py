@@ -57,10 +57,10 @@ class FacebookLogic(object):
             message_text = messaging_event["message"]["text"]
         except KeyError:
             self.send_message_text(
-                user.fb_id, "Thanks for the likes, {name}!".format(name=user.name))
+                user['fb_id'], "Thanks for the likes, {name}!".format(name=user['name']))
         else:
             if message_text.lower() == "event" or message_text.lower() == "events":
-                self.send_event(user.fb_id)
+                self.send_event(user['fb_id'])
 
     def get_user_data(self, fb_id):
         logging.info("getting info of {recipient}".format(recipient=fb_id))
