@@ -59,7 +59,7 @@ class FacebookLogic(object):
             self.send_message_text(
                 user.fb_id, "Thanks for the likes, {name}!".format(name=user.name))
         else:
-            if message_text.lower() == "event":
+            if message_text.lower() == "event" or message_text.lower() == "events":
                 self.send_event(user.fb_id)
 
     def get_user_data(self, fb_id):
@@ -71,7 +71,10 @@ class FacebookLogic(object):
             logging.info(r.status_code)
             logging.info(r.text)
         result = r.json()
-        return {'fb_id': fb_id, 'name': result['first_name']}
+        response = dict()
+        response['fb_id'] = fb_id
+        response['name'] = result['first_name']
+        return response
 
     def send_message_text(self, recipient_id, message_text):
         logging.info("sending message to {recipient}: {text}".format(
