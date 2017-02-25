@@ -12,6 +12,8 @@ class Config(object):
 
 class ProductionConfig(Config):
     DEBUG = False
+    WTF_CSRF_ENABLED = True
+    SECRET_KEY = 'babababa'
 
 
 class StagingConfig(Config):
