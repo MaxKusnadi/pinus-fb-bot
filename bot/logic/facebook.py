@@ -59,7 +59,7 @@ class FacebookLogic(object):
                 user['fb_id'], "Thanks for the likes, {name}!".format(name=user['name']))
         else:
             if message_text.lower() == "event" or message_text.lower() == "events":
-                self.send_message_bubble(sender_id)
+                self.send_message_bubble(user['fb_id'])
                 self.send_event(user['fb_id'])
 
     def get_user_data(self, fb_id):
