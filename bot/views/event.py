@@ -12,8 +12,8 @@ logic = EventLogic()
 
 @app.route('/events', methods=['GET'])
 def event_index():
-    events = logic.get_all_events()
-    return render_template('event/index.html', events=events)
+    # events = logic.get_all_events()
+    return render_template('event/index.html')
 
 
 @app.route('/event/activate/<event_id>', methods=['GET'])
