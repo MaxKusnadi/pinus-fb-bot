@@ -98,12 +98,12 @@ class FacebookLogic(object):
         events = self.map.get_all_active_events()
         count = 1
         for event in events:
-            title = "{}. {} \n".format(str(count), event.title)
-            description = "Desc: {}\n".format(
+            title = "{}. {} \n\n".format(str(count), event.title)
+            description = "Desc: {}\n\n".format(
                 event.description) if event.description else ""
             link = "Link: {}".format(event.link) if event.link else ""
 
             message = "".join([title, description, link])
             count += 1
             self.send_message_text(fb_id, message)
-            self.send_message_text(fb_id, "Thank you! :)")
+        self.send_message_text(fb_id, "Thank you! :)")
