@@ -96,7 +96,7 @@ class FacebookLogic(object):
 
     def send_event(self, fb_id):
         events = self.map.get_all_active_events()
-        count = 0
+        count = 1
         for event in events:
             title = "{}. {} \n".format(str(count), event.title)
             description = "Desc: {}\n".format(
@@ -106,3 +106,4 @@ class FacebookLogic(object):
             message = "".join([title, description, link])
             count += 1
             self.send_message_text(fb_id, message)
+            self.send_message_text(fb_id, "Thank you! :)")
