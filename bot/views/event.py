@@ -19,7 +19,6 @@ def event_index():
 @app.route('/event/activate/<event_id>', methods=['GET'])
 def activate_event(event_id):
     logic.activate_event(event_id)
-    events = logic.get_all_events()
     flash('Event with id: {} is activated'.format(event_id))
     return redirect(url_for('event_index'))
 
@@ -27,7 +26,6 @@ def activate_event(event_id):
 @app.route('/event/deactivate/<event_id>', methods=['GET'])
 def deactivate_event(event_id):
     logic.deactivate_event(event_id)
-    events = logic.get_all_events()
     flash('Event with id: {} is deactivated'.format(event_id))
     return redirect(url_for('event_index'))
 
