@@ -21,9 +21,9 @@ class FacebookLogic(object):
     def parse_messaging_event(self, messaging_event):
         sender_id = messaging_event["sender"]["id"]
         recipient_id = messaging_event["recipient"]["id"]
-        self.send_message_bubble(sender_id)
         user = self.get_user_data(sender_id)
         if messaging_event.get("message"):  # someone sent us a message
+        	self.send_message_bubble(sender_id)
             self.parse_message(user, messaging_event)
 
         if messaging_event.get("delivery"):  # delivery confirmation
