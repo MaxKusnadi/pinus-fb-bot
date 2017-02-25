@@ -38,7 +38,7 @@ class EventMapper(object):
         return events
 
     # UPDATE
-    def update_event(self, event_id, title=None, description=None):
+    def update_event(self, event_id, title=None, description=None, link=None):
         try:
             event = self.get_event_by_id(event_id)
         except ValueError as err:
@@ -50,6 +50,8 @@ class EventMapper(object):
                 event.update_title(title)
             if description:
                 event.update_description(description)
+            if link:
+                event.update_link(link)
             Database.commit_db()
             return event
 

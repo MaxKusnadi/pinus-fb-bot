@@ -27,7 +27,7 @@
     {% else %}
       <td> <a href="{{ url_for('activate_event', event_id=event.id)}}">Activate</a> <td>
     {% endif %}
-    <td> Update <td>
+    <td> <a href="{{ url_for('update_event', event_id=event.id)}}">Update</a> <td>
   </tr>
   {% endfor %}
 </table>

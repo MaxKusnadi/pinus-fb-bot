@@ -71,10 +71,11 @@ class TestEventMapperUpdate(unittest.TestCase):
 
     def test_update_event(self):
         e = self.map.update_event(
-            self.e.id, title="Nuansa", description="Hello")
+            self.e.id, title="Nuansa", description="Hello", link='ww.com')
         e = self.map.get_event_by_id(e.id)
         assert(e.title == "Nuansa")
         assert(e.description == "Hello")
+        assert(e.link == 'ww.com')
 
     def test_set_event_inactive(self):
         e = self.map.set_event_inactive(self.e.id)
