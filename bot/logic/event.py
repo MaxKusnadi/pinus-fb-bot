@@ -39,12 +39,6 @@ class EventLogic(object):
 
     def get_all_events(self):
         events = self.map.get_all_events()
-
-        def convert_to_string(event):
-            event.isActive = str(event.isActive)
-        events = map(lambda x: convert_to_string(x), events)
-        # for event in events:
-        #     event.isActive = str(event.isActive)
         events = sorted(events, key=lambda x: x.id)
         return events
 

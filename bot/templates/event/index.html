@@ -22,7 +22,7 @@
     <td> {{ event.link }} </td>
     <td> {{ event.creationDate }} </td>
     <td> {{ event.isActive }} </td>
-    {% if event.isActive == 'True' %}
+    {% if event.isActive == true %}
       <td> <a href="{{ url_for('deactivate_event', event_id=event.id)}}">Deactivate</a><td>
     {% else %}
       <td> <a href="{{ url_for('activate_event', event_id=event.id)}}">Activate</a> <td>
