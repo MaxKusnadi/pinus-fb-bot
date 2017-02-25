@@ -1,1 +1,1 @@
-web: gunicorn bot:app
+web: gunicorn bot:app --timeout 60
