@@ -39,7 +39,7 @@ class EventLogic(object):
 
     def get_all_events(self):
         events = self.map.get_all_events()
-        events = sorted(events, key=lambda x: x.id)
+        events = sorted(events, key=lambda x: (x.isActive, x.id), reverse=True)
         return events
 
     def activate_event(self, event_id):
