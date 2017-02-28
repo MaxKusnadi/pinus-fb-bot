@@ -46,7 +46,7 @@
     <td> {{ event.description }} </td>
     <td> {{ event.link }} </td>
     <td> {{ event.creationDate }} </td>
-    <td> {{ event.isActive }} </td>
+    <td class="{% if event.isActive == true %}bg-success{% else %} bg-danger{% endif %}"> {{ event.isActive }} </td>
     {% if event.isActive == true %}
       <td> <a href="{{ url_for('deactivate_event', event_id=event.id)}}">Deactivate</a><td>
     {% else %}
