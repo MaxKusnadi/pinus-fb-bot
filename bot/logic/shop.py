@@ -117,7 +117,7 @@ class ShopLogic(object):
     def _process_quantity(self, sender_id, payload):
         data = json.dumps({
             "recipient": {
-                "id": recipient_id
+                "id": sender_id
             },
             "message": {
                 "text": "Which flower do you want?",
