@@ -107,7 +107,7 @@ class ShopLogic(object):
     def _process_text(self, sender_id, message_text):
         data = json.dumps({
             "recipient": {
-                "id": recipient_id
+                "id": sender_id
             },
             "message": {
                 "text": message_text
@@ -176,19 +176,17 @@ class ShopLogic(object):
                 "id": sender_id
             },
             "message": {
-                "text": "Confirm order?",
+                "text": "Confirm order? This is final and will be recorded",
                 "quick_replies": [
                     {
                         "content_type": "text",
                         "title": "Yes",
-                        "payload": str(payload),
-                        "image_url": "https://cdn.pixabay.com/photo/2013/06/23/19/47/rose-140853_960_720.jpg"
+                        "payload": str(payload)
                     },
                     {
                         "content_type": "text",
                         "title": "No",
                         "payload": "No",
-                        "image_url": "https://cdn.pixabay.com/photo/2013/05/26/12/14/rose-113735_960_720.jpg"
                     }
                 ]
             }
