@@ -75,19 +75,19 @@ class Logic(object):
         self.facebook.send_message_text(fb_id, "Please choose 1:")
         self.facebook.send_message_text(
             fb_id, "Type A: Single Red Rose Bouquet + Baby's breath")
-        self.facebook.send.message_picture(
+        self.facebook.send_message_picture(
             fb_id, "https://s-media-cache-ak0.pinimg.com/736x/9a/8d/96/9a8d9695005265b026e6ca8b6e3c4ba5.jpg")
         self.facebook.send_message_text(
             fb_id, "Type B: Three Red Roses Bouquet + Baby's breath")
-        self.facebook.send.message_picture(
+        self.facebook.send_message_picture(
             fb_id, "http://www.clipartkid.com/images/49/single-stem-rose-clip-art-clipart-panda-free-clipart-images-hkW4rA-clipart.jpg")
         self.facebook.send_message_text(
             fb_id, "Type C: Single Red Gerbera Bouquet + Baby's breath")
-        self.facebook.send.message_picture(
+        self.facebook.send_message_picture(
             fb_id, "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSIk6ypFYws--Y3V_9X0snuYEQdwWBLAaDaO21-aAnz63MN0vQkVQ")
         self.facebook.send_message_text(
             fb_id, "Type D: Single Yellow Gerbera Bouquet + Baby's breath")
-        self.facebook.send.message_picture(
+        self.facebook.send_message_picture(
             fb_id, "https://s-media-cache-ak0.pinimg.com/originals/33/73/37/337337e83ec1b10a67405f2d419229c8.jpg")
         payload = self.shop.generate_payload_start_order(fb_id)
         self.facebook.send_reply(payload)
