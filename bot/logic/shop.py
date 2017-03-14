@@ -128,7 +128,7 @@ class ShopLogic(object):
                         "payload": str({
                             "description": payload,
                             "quantity": 1
-                        })
+                            })
                     },
                     {
                         "content_type": "text",
@@ -136,7 +136,7 @@ class ShopLogic(object):
                         "payload": str({
                             "description": payload,
                             "quantity": 2
-                        })
+                            })
                     },
                     {
                         "content_type": "text",
@@ -144,7 +144,23 @@ class ShopLogic(object):
                         "payload": str({
                             "description": payload,
                             "quantity": 3
-                        })
+                            })
+                    },
+                    {
+                        "content_type": "text",
+                        "title": "4",
+                        "payload": str({
+                            "description": payload,
+                            "quantity": 4
+                            })
+                    },
+                    {
+                        "content_type": "text",
+                        "title": "5",
+                        "payload": str({
+                            "description": payload,
+                            "quantity": 5
+                            })
                     },
                 ]
             }
