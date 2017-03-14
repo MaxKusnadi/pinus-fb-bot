@@ -66,7 +66,7 @@ class Logic(object):
         self._send_event(user['fb_id'])
 
     def _process_order(self, user):
-        user = self.shop.store_user(user)
+        user_stored = self.shop.store_user(user)
         self._start_order(user['fb_id'])
 
     def _start_order(self, fb_id):
