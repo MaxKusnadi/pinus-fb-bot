@@ -74,12 +74,12 @@ class ShopLogic(object):
             logging.info("Canceling order for {}".format(sender_id))
             data = self._process_text(
                 sender_id, "You can always order flower again by typing 'shop'! ")
-        elif _check_confirmation(payload):
+        elif self._check_confirmation(payload):
             logging.info("Storing order for {}".format(sender_id))
             self._store_order(sender_id, payload)
             data = self._process_text(
                 sender_id, "Your order has been confirmed. Thanks for ordering! :)")
-        elif _check_quantity(payload):
+        elif self._check_quantity(payload):
             logging.info("Confirming order for {recipient}".format(
                 recipient=sender_id))
             data = self._confirm_order(sender_id, payload)
