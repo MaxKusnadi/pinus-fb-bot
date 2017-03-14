@@ -117,50 +117,30 @@ class ShopLogic(object):
     def _process_quantity(self, sender_id, payload):
         data = json.dumps({
             "recipient": {
-                "id": sender_id
+                "id": recipient_id
             },
             "message": {
-                "text": "How many {} do you want?".format(payload),
+                "text": "Which flower do you want?",
                 "quick_replies": [
                     {
                         "content_type": "text",
-                        "title": "1",
-                        "payload": str({
-                            "description": payload,
-                            "quantity": 1
-                        })
+                        "title": "Packet A",
+                        "payload": "Packet A"
                     },
                     {
                         "content_type": "text",
-                        "title": "2",
-                        "payload": str({
-                            "description": payload,
-                            "quantity": 2
-                        })
+                        "title": "Packet B",
+                        "payload": "Packet B"
                     },
                     {
                         "content_type": "text",
-                        "title": "3",
-                        "payload": str({
-                            "description": payload,
-                            "quantity": 3
-                        })
+                        "title": "Packet C",
+                        "payload": "Packet C"
                     },
                     {
                         "content_type": "text",
-                        "title": "4",
-                        "payload": str({
-                            "description": payload,
-                            "quantity": 4
-                        })
-                    },
-                    {
-                        "content_type": "text",
-                        "title": "5",
-                        "payload": str({
-                            "description": payload,
-                            "quantity": 5
-                        })
+                        "title": "Packet D",
+                        "payload": "Packet D"
                     }
                 ]
             }
