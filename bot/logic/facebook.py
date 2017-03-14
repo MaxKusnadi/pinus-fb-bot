@@ -25,11 +25,7 @@ class FacebookLogic(object):
             },
             "sender_action": "typing_on"
         })
-        r = requests.post(self.LINK, params=self.PARAMS,
-                          headers=self.HEADERS, data=data)
-        if r.status_code != 200:
-            logging.info(r.status_code)
-            logging.info(r.text)
+        self.send_reply(data)
 
     def get_user_data(self, fb_id):
         logging.info("getting info of {recipient}".format(recipient=fb_id))
@@ -58,8 +54,30 @@ class FacebookLogic(object):
                 "text": message_text
             }
         })
+        self.send_reply(data)
+
+    def send_message_picture(self, fb_id, pic):
+        logging.info("sending pic for {recipient}".format(
+            recipient=fb_id))
+
+        data = json.dumps({
+            "recipient": {
+                "id": fb_id
+            },
+            "message": {
+                "attachment": {
+                    "type": "image",
+                    "payload": {
+                        "url": pic
+                    }
+                }
+            }
+        })
+        self.send_reply(data)
+
+    def send_reply(self, payload):
         r = requests.post(self.LINK, params=self.PARAMS,
-                          headers=self.HEADERS, data=data)
+                          headers=self.HEADERS, data=payload)
         if r.status_code != 200:
             logging.info(r.status_code)
             logging.info(r.text)
