@@ -19,5 +19,4 @@ import bot.views.shop
 
 import bot.models.user
 import bot.models.order
-import bot.models.orderItem
 import bot.models.event

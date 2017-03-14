@@ -14,11 +14,15 @@ class TestOrderMapperCreate(unittest.TestCase):
         self.mapper = OrderMapper()
 
     def test_create_order(self):
-        order = self.mapper.create_order("123")
+        order = self.mapper.create_order("123", "Flower", 2)
+
+        assert (order.description == "Flower")
+        assert (order.quantity == 2)
         assert (order.user_id == self.u.id)
 
     def test_create_order_invalid_fb_id(self):
-        self.assertRaises(ValueError, self.mapper.create_order, "@#")
+        self.assertRaises(
+            ValueError, self.mapper.create_order, "@#", "flower", 2)
 
 
 class TestOrderMapperRead(unittest.TestCase):
@@ -28,7 +32,7 @@ class TestOrderMapperRead(unittest.TestCase):
         self.uMapper = UserMapper()
         self.u = self.uMapper.create_user("123")
         self.mapper = OrderMapper()
-        self.o = self.mapper.create_order("123")
+        self.o = self.mapper.create_order("123", "Flower", 2)
 
     def test_get_order_by_order_id(self):
         order = self.mapper.get_order_by_order_id(self.o.id)
@@ -48,6 +52,7 @@ class TestOrderMapperRead(unittest.TestCase):
         self.uMapper.create_user("456")
         self.assertRaises(ValueError, self.mapper.get_orders_by_fb_id, "456")
 
+
 class TestOrderMapperUpdate(unittest.TestCase):
 
     def setUp(self):
@@ -55,11 +60,13 @@ class TestOrderMapperUpdate(unittest.TestCase):
         uMapper = UserMapper()
         u = uMapper.create_user("123")
         self.mapper = OrderMapper()
-        self.o = self.mapper.create_order("123")
+        self.o = self.mapper.create_order("123", "Flower", 2)
 
     def test_update_status_by_order_id(self):
-        order = self.mapper.update_order_status_by_order_id(self.o.id, "CONFIRMED")
-        assert(order.status == "CONFIRMED")
+        order = self.mapper.update_order_status_by_order_id(
+            self.o.id, "NOT_CONFIRMED")
+        assert(order.status == "NOT_CONFIRMED")
 
     def test_update_status_by_invalid_order_id(self):
-        self.assertRaises(ValueError, self.mapper.update_order_status_by_order_id, 123, "HELLO")
+        self.assertRaises(
+            ValueError, self.mapper.update_order_status_by_order_id, 12345, "HELLO")

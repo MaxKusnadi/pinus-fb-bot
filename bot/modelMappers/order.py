@@ -13,7 +13,7 @@ class OrderMapper(object):
         self.userMapper = UserMapper()
 
     # CREATE
-    def create_order(self, fb_id):
+    def create_order(self, fb_id, description, quantity):
         try:
             user = self.userMapper.get_user_by_fb_id(fb_id)
         except ValueError as err:
@@ -21,7 +21,7 @@ class OrderMapper(object):
             logging.error(err.args)
             raise ValueError(UNABLE_TO_CREATE.format("Order"), fb_id)
         else:
-            order = Order(user)
+            order = Order(user, description, quantity)
             order.set_time_auto()
             Database.add_to_db(order)
             return order

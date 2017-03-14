@@ -1,0 +1,26 @@
+<h2 class="text-center"> Order Table </h2>
+
+<table class="table table-striped">
+  <thead class="thead-inverse">
+    <tr>
+      <th> Id </th>
+      <th> Time </th>
+      <th> Description </th>
+      <th> Quantity </th>
+      <th> Status </th>
+      <th> User ID </th>
+    </tr>
+  </thead>
+
+  {% for order in orders %}
+  <tr>
+    <td> {{ order.id }} </td>
+    <td> {{ order.time }} </td>
+    <td> {{ order.description }} </td>
+    <td> {{ order.quantity }} </td>
+    <td> {{ order.status }} </td>
+    <td> {{ order.user_id }} </td>
+  </tr>
+  {% endfor %}
+
+</table>

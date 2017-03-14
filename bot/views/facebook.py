@@ -3,10 +3,10 @@ import os
 
 from flask import request
 from bot import app
-from bot.logic.facebook import FacebookLogic
+from bot.logic.logic import Logic
 
 
-logic = FacebookLogic()
+logic = Logic()
 
 
 @app.route('/', methods=['GET'])
@@ -23,16 +23,9 @@ def verify():
 
 @app.route('/', methods=['POST'])
 def webhook():
-
-    # endpoint for processing incoming messaging events
-
     data = request.get_json()
-    # you may not want to log every incoming message in production, but it's
-    # good for testing
     logging.debug(data)
-
     if data["object"] == "page":
-
         for entry in data["entry"]:
             for messaging_event in entry["messaging"]:
                 logic.parse_messaging_event(messaging_event)
