@@ -148,7 +148,7 @@ class ShopLogic(object):
                     },
                     {
                         "content_type": "text",
-                        "title": "3",
+                        "title": "4",
                         "payload": str({
                             "description": payload,
                             "quantity": 4
@@ -156,7 +156,7 @@ class ShopLogic(object):
                     },
                     {
                         "content_type": "text",
-                        "title": "3",
+                        "title": "5",
                         "payload": str({
                             "description": payload,
                             "quantity": 5
