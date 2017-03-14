@@ -149,6 +149,8 @@ class ShopLogic(object):
                 ]
             }
         })
+        logging.info("From shop logic")
+        logging.info(data)
         return data
 
     def confirm_order(self, sender_id, payload):
