@@ -117,35 +117,31 @@ class ShopLogic(object):
     def _process_quantity(self, sender_id, payload):
         data = json.dumps({
             "recipient": {
-                "id": sender_id
+                "id": recipient_id
             },
             "message": {
-                "text": "How many {} do you want?".format(payload),
-                "quick_replies":[
+                "text": "Which flower do you want?",
+                "quick_replies": [
                     {
-                        "content_type":"text",
-                        "title":"1",
-                        "payload": str({
-                            "description": payload,
-                            "quantity": 1
-                            })
+                        "content_type": "text",
+                        "title": "Packet A",
+                        "payload": "Packet A"
                     },
                     {
-                        "content_type":"text",
-                        "title":"2",
-                        "payload": str({
-                            "description": payload,
-                            "quantity": 2
-                            })
+                        "content_type": "text",
+                        "title": "Packet B",
+                        "payload": "Packet B"
                     },
                     {
-                        "content_type":"text",
-                        "title":"3",
-                        "payload": str({
-                            "description": payload,
-                            "quantity": 3
-                            })
+                        "content_type": "text",
+                        "title": "Packet C",
+                        "payload": "Packet C"
                     },
+                    {
+                        "content_type": "text",
+                        "title": "Packet D",
+                        "payload": "Packet D"
+                    }
                 ]
             }
         })
