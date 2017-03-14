@@ -69,23 +69,24 @@ class ShopLogic(object):
         if payload in ["Packet A", "Packet B", "Packet C", "Packet D"]:
             logging.info("processing quantity for {recipient}".format(
                 recipient=sender_id))
-            self._process_quantity(sender_id, payload)
+            data = self._process_quantity(sender_id, payload)
         elif payload == "No":
             logging.info("Canceling order for {}".format(sender_id))
-            self._process_text(
+            data = self._process_text(
                 sender_id, "You can always order flower again by typing 'shop'! ")
         elif _check_confirmation(payload):
             logging.info("Storing order for {}".format(sender_id))
             self._store_order(sender_id, payload)
-            self._process_text(
+            data = self._process_text(
                 sender_id, "Your order has been confirmed. Thanks for ordering! :)")
         elif _check_quantity(payload):
             logging.info("Confirming order for {recipient}".format(
                 recipient=sender_id))
-            self._confirm_order(sender_id, payload)
+            data = self._confirm_order(sender_id, payload)
         else:
-            self._process_text(
+            data = self._process_text(
                 sender_id, "Sorry an error occured! It should'nt be happening. Please try again or order here bit.ly/PINUSFlowers")
+        return data
 
     def _store_order(self, sender_id, payload):
         payload = eval(payload)
@@ -146,11 +147,25 @@ class ShopLogic(object):
                             "quantity": 3
                             })
                     },
+                    {
+                        "content_type":"text",
+                        "title":"4",
+                        "payload": str({
+                            "description": payload,
+                            "quantity": 4
+                            })
+                    },
+                    {
+                        "content_type":"text",
+                        "title":"5",
+                        "payload": str({
+                            "description": payload,
+                            "quantity": 5
+                            })
+                    }
                 ]
             }
         })
-        logging.info("From shop logic")
-        logging.info(data)
         return data
 
     def confirm_order(self, sender_id, payload):
