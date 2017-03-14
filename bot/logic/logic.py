@@ -94,4 +94,5 @@ class Logic(object):
 
     def _process_quick_reply(self, sender_id, payload):
         data = self.shop.process_quick_reply(sender_id, payload)
+        logging.info(data)
         self.facebook.send_reply(data)
