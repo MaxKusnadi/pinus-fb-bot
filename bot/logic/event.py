@@ -55,3 +55,6 @@ class EventLogic(object):
         except ValueError as err:
             logging.error(err)
             logging.error(err.args)
+
+    def get_all_active_events(self):
+        return self.map.get_all_active_events()
