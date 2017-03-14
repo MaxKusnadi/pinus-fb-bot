@@ -168,7 +168,7 @@ class ShopLogic(object):
         })
         return data
 
-    def confirm_order(self, sender_id, payload):
+    def _confirm_order(self, sender_id, payload):
         payload = eval(payload)
         payload["confirmed"] = True
         data = json.dumps({
