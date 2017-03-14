@@ -120,28 +120,32 @@ class ShopLogic(object):
                 "id": sender_id
             },
             "message": {
-                "text": "Which flower do you want?",
+                "text": "How many {} do you want?".format(payload),
                 "quick_replies": [
                     {
                         "content_type": "text",
-                        "title": "Packet A",
-                        "payload": "Packet A"
+                        "title": "1",
+                        "payload": str({
+                            "description": payload,
+                            "quantity": 1
+                        })
                     },
                     {
                         "content_type": "text",
-                        "title": "Packet B",
-                        "payload": "Packet B"
+                        "title": "2",
+                        "payload": str({
+                            "description": payload,
+                            "quantity": 2
+                        })
                     },
                     {
                         "content_type": "text",
-                        "title": "Packet C",
-                        "payload": "Packet C"
+                        "title": "3",
+                        "payload": str({
+                            "description": payload,
+                            "quantity": 3
+                        })
                     },
-                    {
-                        "content_type": "text",
-                        "title": "Packet D",
-                        "payload": "Packet D"
-                    }
                 ]
             }
         })
