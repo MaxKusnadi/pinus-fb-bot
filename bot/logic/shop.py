@@ -78,7 +78,7 @@ class ShopLogic(object):
             logging.info("Storing order for {}".format(sender_id))
             self._store_order(sender_id, payload)
             data = self._process_text(
-                sender_id, "Your order has been confirmed. Thanks for ordering! :)")
+                sender_id, "Your order has been confirmed. Transfer to POSB Savings 249256455 and message proof to Steven Nilam (8138 6940). Thanks for ordering! :)")
         elif self._check_quantity(payload):
             logging.info("Confirming order for {recipient}".format(
                 recipient=sender_id))
@@ -122,46 +122,46 @@ class ShopLogic(object):
             },
             "message": {
                 "text": "How many {} do you want?".format(payload),
-                "quick_replies":[
+                "quick_replies": [
                     {
-                        "content_type":"text",
-                        "title":"1",
+                        "content_type": "text",
+                        "title": "1",
                         "payload": str({
                             "description": payload,
                             "quantity": 1
-                            })
+                        })
                     },
                     {
-                        "content_type":"text",
-                        "title":"2",
+                        "content_type": "text",
+                        "title": "2",
                         "payload": str({
                             "description": payload,
                             "quantity": 2
-                            })
+                        })
                     },
                     {
-                        "content_type":"text",
-                        "title":"3",
+                        "content_type": "text",
+                        "title": "3",
                         "payload": str({
                             "description": payload,
                             "quantity": 3
-                            })
+                        })
                     },
                     {
-                        "content_type":"text",
-                        "title":"4",
+                        "content_type": "text",
+                        "title": "4",
                         "payload": str({
                             "description": payload,
                             "quantity": 4
-                            })
+                        })
                     },
                     {
-                        "content_type":"text",
-                        "title":"5",
+                        "content_type": "text",
+                        "title": "5",
                         "payload": str({
                             "description": payload,
                             "quantity": 5
-                            })
+                        })
                     }
                 ]
             }
