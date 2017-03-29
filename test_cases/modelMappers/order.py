@@ -38,6 +38,10 @@ class TestOrderMapperRead(unittest.TestCase):
         order = self.mapper.get_order_by_order_id(self.o.id)
         assert (order.user_id == self.u.id)
 
+    def test_get_all_orders(self):
+        orders = self.mapper.get_all_orders()
+        assert(self.o in orders)
+
     def test_get_order_by_invalid_order_id(self):
         self.assertRaises(ValueError, self.mapper.get_order_by_order_id, 123)
 

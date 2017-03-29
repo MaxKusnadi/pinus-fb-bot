@@ -16,7 +16,9 @@ import bot.views.index
 import bot.views.facebook
 import bot.views.event
 import bot.views.shop
+import bot.views.songRequest
 
 import bot.models.user
 import bot.models.order
 import bot.models.event
+import bot.models.songRequest

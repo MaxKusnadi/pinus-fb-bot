@@ -3,6 +3,7 @@ import logging
 from bot.logic.event import EventLogic
 from bot.logic.facebook import FacebookLogic
 from bot.logic.shop import ShopLogic
+from bot.logic.songRequest import SongRequestLogic
 
 
 class Logic(object):
@@ -11,6 +12,7 @@ class Logic(object):
         self.event = EventLogic()
         self.facebook = FacebookLogic()
         self.shop = ShopLogic()
+        self.song = SongRequestLogic()
 
     def parse_messaging_event(self, messaging_event):
         sender_id = messaging_event["sender"]["id"]
@@ -44,8 +46,20 @@ class Logic(object):
             else:
                 if message_text.lower() == "event" or message_text.lower() == "events":
                     self._process_event(user)
-                elif message_text.lower() == "shop":
+                elif message_text.lower() == "shop flower":
                     self._process_order(user)
+                elif "//" in message_text.lower():
+                    self._process_songs(user, message_text)
+
+    def _process_songs(self, user, message):
+        self.facebook.send_message_bubble(user['fb_id'])
+        is_song_okay = self.song.process_message(message)
+        if is_song_okay:
+            self.facebook.send_message_text(
+                user['fb_id'], "Thank you! Your request has been recorded")
+        else:
+            self.facebook.send_message_text(
+                user['fb_id'], "Sorry, there is an error processing your request. Did you forget to put the song title or the message? Did you follow this format '<song title> // <message>' ?")
 
     def _send_event(self, fb_id):
         events = self.event.get_all_active_events()
