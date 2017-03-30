@@ -12,7 +12,7 @@ class SongRequestLogic(object):
 
     def get_all_requests(self):
         songs = self.mapper.get_all_requests()
-        return songs
+        return list(reversed(songs))
 
     def process_message(self, message):
         text_list = message.split("//")
